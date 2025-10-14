@@ -10,11 +10,12 @@ namespace jobappsoftware
 {
     public class JobManager
     {
+        private const string FilePath = "applications.json";
         public List<JobApplication> Applications { get; private set; }
 
         public JobManager()
         {
-            Applications = new List<JobApplication>();
+            Applications = LoadFromFile();
         }
 
         public void AddJob()
@@ -31,6 +32,7 @@ namespace jobappsoftware
             var job = new JobApplication(company, title, salary);
             Applications.Add(job);
 
+            SaveToFile();
             Console.WriteLine("Ansökan tillagd!\n");
         }
 
@@ -64,6 +66,7 @@ namespace jobappsoftware
                 int choice = int.Parse(Console.ReadLine());
                 Applications[index].Status = (ApplicationStatus)choice;
 
+                SaveToFile();
                 Console.WriteLine("Status uppdaterad!\n");
             }
             else
@@ -71,7 +74,7 @@ namespace jobappsoftware
                 Console.WriteLine("Ogiltigt val.\n");
             }
         }
-
+        
         public void RemoveJob()
         {
             ShowAll();
@@ -79,11 +82,38 @@ namespace jobappsoftware
             if (int.TryParse(Console.ReadLine(), out int index) && index >= 0 && index < Applications.Count)
             {
                 Applications.RemoveAt(index);
+
+                SaveToFile();
                 Console.WriteLine("Ansökan borttagen!\n");
             }
             else
             {
                 Console.WriteLine("Ogiltigt val.\n");
+            }
+        }
+
+        //saving json
+        private void SaveToFile()
+        {
+            string json = JsonSerializer.Serialize(Applications, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(FilePath, json);
+        }
+
+        //loading jsonz
+        private List<JobApplication> LoadFromFile()
+        {
+            if (!File.Exists(FilePath))
+                return new List<JobApplication>();
+
+            try
+            {
+                string json = File.ReadAllText(FilePath);
+                return JsonSerializer.Deserialize<List<JobApplication>>(json) ?? new List<JobApplication>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Fel vid laddning av data: {ex.Message}");
+                return new List<JobApplication>();
             }
         }
     }
