@@ -4,7 +4,9 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            var manager = new JobManager();
+            var menu = new Menu(manager);
+            menu.Run();
         }
-    }
+    }   
 }
