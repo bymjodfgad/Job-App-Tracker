@@ -20,31 +20,31 @@ namespace jobappsoftware
 
         public void AddJob()
         {
-            Console.Write("Företagsnamn: ");
+            Console.Write("Company: ");
             string company = Console.ReadLine();
 
-            Console.Write("Jobbtitel: ");
+            Console.Write("Title: ");
             string title = Console.ReadLine();
 
-            Console.Write("Löneanspråk (kr): ");
+            Console.Write("Salary (kr): ");
             int salary = int.Parse(Console.ReadLine());
 
             var job = new JobApplication(company, title, salary);
             Applications.Add(job);
 
             SaveToFile();
-            Console.WriteLine("Ansökan tillagd!\n");
+            Console.WriteLine("Application added!\n");
         }
 
         public void ShowAll()
         {
             if (Applications.Count == 0)
             {
-                Console.WriteLine("Inga ansökningar att visa.\n");
+                Console.WriteLine("No.\n");
                 return;
             }
 
-            Console.WriteLine("Alla ansökningar:");
+            Console.WriteLine("All applications:");
             foreach (var app in Applications)
             {
                 Console.WriteLine(app.GetSummary());
@@ -55,40 +55,40 @@ namespace jobappsoftware
         public void UpdateStatus()
         {
             ShowAll();
-            Console.Write("Ange index på ansökan att uppdatera (börjar från 0): ");
+            Console.Write("Choose applcation to update (Starts from 0): ");
             if (int.TryParse(Console.ReadLine(), out int index) && index >= 0 && index < Applications.Count)
             {
-                Console.WriteLine("Välj ny status:");
+                Console.WriteLine("Choose new status:");
                 foreach (var status in Enum.GetValues(typeof(ApplicationStatus)))
                     Console.WriteLine($"{(int)status} - {status}");
 
-                Console.Write("Ditt val: ");
+                Console.Write("Your choice: ");
                 int choice = int.Parse(Console.ReadLine());
                 Applications[index].Status = (ApplicationStatus)choice;
 
                 SaveToFile();
-                Console.WriteLine("Status uppdaterad!\n");
+                Console.WriteLine("Status updated!\n");
             }
             else
             {
-                Console.WriteLine("Ogiltigt val.\n");
+                Console.WriteLine("Invalid choice.\n");
             }
         }
         
         public void RemoveJob()
         {
             ShowAll();
-            Console.Write("Ange index på ansökan att ta bort: ");
+            Console.Write("Choose applcation to remove (Starts from 0): ");
             if (int.TryParse(Console.ReadLine(), out int index) && index >= 0 && index < Applications.Count)
             {
                 Applications.RemoveAt(index);
 
                 SaveToFile();
-                Console.WriteLine("Ansökan borttagen!\n");
+                Console.WriteLine("Application removed!\n");
             }
             else
             {
-                Console.WriteLine("Ogiltigt val.\n");
+                Console.WriteLine("Invalid choice.\n");
             }
         }
 
@@ -112,7 +112,7 @@ namespace jobappsoftware
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Fel vid laddning av data: {ex.Message}");
+                Console.WriteLine($"Error loading data: {ex.Message}");
                 return new List<JobApplication>();
             }
         }
