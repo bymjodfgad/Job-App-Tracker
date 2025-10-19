@@ -40,11 +40,14 @@ namespace jobappsoftware
         {
             if (Applications.Count == 0)
             {
-                Console.WriteLine("No.\n");
+                Console.WriteLine("No applications.\n");
                 return;
             }
 
-            Console.WriteLine("All applications:");
+            Console.WriteLine("Number of applications: "+Applications.Count);
+
+            Console.WriteLine("Applications:");
+         
             foreach (var app in Applications)
             {
                 Console.WriteLine(app.GetSummary());
