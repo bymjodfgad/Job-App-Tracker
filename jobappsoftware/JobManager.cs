@@ -50,8 +50,27 @@ namespace jobappsoftware
          
             foreach (var app in Applications)
             {
+
+
+            switch(app.Status)
+                {
+                    case ApplicationStatus.Offer:
+                        Console.ForegroundColor = ConsoleColor.Green; 
+                        break;
+                    case ApplicationStatus.Rejected:
+                        Console.ForegroundColor= ConsoleColor.Red;
+                        break;
+                    case ApplicationStatus.Interview:
+                        Console.ForegroundColor = ConsoleColor.Blue;
+                        break;
+                    case ApplicationStatus.Applied:
+                        Console.ForegroundColor = ConsoleColor.Yellow;
+                        break;
+                }
                 Console.WriteLine(app.GetSummary());
             }
+
+            Console.ResetColor();
             Console.WriteLine();
         }
 
