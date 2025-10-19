@@ -44,7 +44,7 @@ namespace jobappsoftware
                 return;
             }
 
-            Console.WriteLine("Number of applications: "+Applications.Count);
+            Console.WriteLine("Number of applications: "+Applications.Count+"\n");
 
             Console.WriteLine("Applications:");
          
@@ -94,7 +94,6 @@ namespace jobappsoftware
                 Console.WriteLine("Invalid choice.\n");
             }
         }
-
 
         public void FilterByStatus()
         {
