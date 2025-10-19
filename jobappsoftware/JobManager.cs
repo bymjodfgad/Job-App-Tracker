@@ -44,7 +44,7 @@ namespace jobappsoftware
                 return;
             }
 
-            Console.WriteLine("Number of applications: "+Applications.Count);
+            Console.WriteLine("Number of applications: "+Applications.Count+"\n");
 
             Console.WriteLine("Applications:");
          
@@ -88,6 +88,36 @@ namespace jobappsoftware
 
                 SaveToFile();
                 Console.WriteLine("Application removed!\n");
+            }
+            else
+            {
+                Console.WriteLine("Invalid choice.\n");
+            }
+        }
+
+        public void FilterByStatus()
+        {
+            Console.WriteLine("Select a status to filter by:");
+            foreach (var status in Enum.GetValues(typeof(ApplicationStatus)))
+            Console.WriteLine($"{(int)status} - {status}");
+
+            Console.Write("Your choice: ");
+            if (int.TryParse(Console.ReadLine(), out int choice) &&
+                Enum.IsDefined(typeof(ApplicationStatus), choice))
+            {
+                var selectedStatus = (ApplicationStatus)choice;
+
+                var filtered = Applications
+                    .Where(a => a.Status == selectedStatus)
+                    .ToList();
+
+                Console.WriteLine($"\nApplications with status: {selectedStatus}\n");
+
+                if (filtered.Count == 0)
+                    Console.WriteLine("No applications found.\n");
+                else
+                    foreach (var app in filtered)
+                        Console.WriteLine(app.GetSummary());
             }
             else
             {
