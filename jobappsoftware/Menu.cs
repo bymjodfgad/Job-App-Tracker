@@ -35,6 +35,7 @@ namespace jobappsoftware
             Console.WriteLine("3. Update status");
             Console.WriteLine("4. Remove an application");
             Console.WriteLine("5. Filter applications by status");
+            Console.WriteLine("6. Sort applications by date");
             Console.WriteLine("0. Exit\n");
             Console.Write("--> Select an option: ");
         }
@@ -60,6 +61,9 @@ namespace jobappsoftware
                     break;
                 case "5":
                     _manager.FilterByStatus();
+                    break;
+                case "6":
+                    _manager.SortByDate();
                     break;
                 case "0":
                     _running = false;
