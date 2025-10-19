@@ -44,7 +44,7 @@ namespace jobappsoftware
                 return;
             }
 
-            Console.WriteLine("Number of applications: "+Applications.Count+"\n");
+            Console.WriteLine($"Number of applications: {Applications.Count}\n");
 
             Console.WriteLine("Applications:");
          
@@ -95,7 +95,7 @@ namespace jobappsoftware
             }
         }
 
-        public void FilterByStatus()
+        public void FilterByStatus() //linq filter based on enum
         {
             Console.WriteLine("Select a status to filter by:");
             foreach (var status in Enum.GetValues(typeof(ApplicationStatus)))
@@ -123,6 +123,23 @@ namespace jobappsoftware
             {
                 Console.WriteLine("Invalid choice.\n");
             }
+        }
+
+        public void SortByDate() //linq sorting based on date
+        {
+            var ordered = Applications.OrderBy(a => a.ApplicationDate).ToList();
+            if (ordered.Count == 0)
+            {
+                Console.WriteLine("No applications to show.\n");
+                return;
+            }
+
+            Console.WriteLine("Applications sorted by date:\n");
+            foreach (var app in ordered)
+            {
+                Console.WriteLine(app.GetSummary());
+            }
+            Console.WriteLine();
         }
 
         //saving json
