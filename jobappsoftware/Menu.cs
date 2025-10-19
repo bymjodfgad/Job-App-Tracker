@@ -27,13 +27,15 @@ namespace jobappsoftware
 
         private void ShowMenu()
         {
-            Console.WriteLine("========== Job Application Tracker ==========");
-            Console.WriteLine("1. Lägg till ny ansökan");
-            Console.WriteLine("2. Visa alla ansökningar");
-            Console.WriteLine("3. Uppdatera status");
-            Console.WriteLine("4. Ta bort en ansökan");
-            Console.WriteLine("0. Avsluta");
-            Console.Write("Välj ett alternativ: ");
+            Console.WriteLine("══════════════════════════════════════");
+            Console.WriteLine("        JOB APPLICATION TRACKER        ");
+            Console.WriteLine("══════════════════════════════════════\n");
+            Console.WriteLine("1. Add new application");
+            Console.WriteLine("2. Show all applications");
+            Console.WriteLine("3. Update status");
+            Console.WriteLine("4. Remove an application");
+            Console.WriteLine("0. Exit\n");
+            Console.Write("--> Select an option: ");
         }
 
         private void HandleInput()
@@ -57,10 +59,10 @@ namespace jobappsoftware
                     break;
                 case "0":
                     _running = false;
-                    Console.WriteLine("Programmet avslutas...");
+                    Console.WriteLine("Exiting program...");
                     break;
                 default:
-                    Console.WriteLine("Ogiltigt val.\n");
+                    Console.WriteLine("Invalid choice.\n");
                     break;
             }
         }

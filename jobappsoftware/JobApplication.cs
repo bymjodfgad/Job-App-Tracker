@@ -41,7 +41,7 @@ namespace jobappsoftware
 
         public string GetSummary()
         {
-            return $"{CompanyName} - {PositionTitle} ({Status}) | Ansökt: {ApplicationDate.ToShortDateString()}";
+            return $"{CompanyName} - {PositionTitle} ({Status}) | Applied: {ApplicationDate.ToShortDateString()}";
         }
 
     }
