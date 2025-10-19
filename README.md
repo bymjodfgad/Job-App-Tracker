@@ -1,6 +1,6 @@
 # Job Application Tracker
 
-Program är ett konsolbaserat system för att hålla koll på jobbansökningar.
+Programet är ett konsolbaserat system för att hålla koll på jobbansökningar.
 Användaren kan:
 
 ➕ Lägga till nya ansökningar
